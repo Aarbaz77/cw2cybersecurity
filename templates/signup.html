@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="form-signin">
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+      <div class="notification is-danger">
+          {{ messages[0] }} Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+      </div>
+  {% endif %}
+  {% endwith %}
+  <form action="/signup" method="POST">
+    <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+
+    <div class="form-floating">
+      <input class="form-control" id="floatingInput" type="email" name="email" placeholder="Your Email" autofocus="">
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input class="form-control" id="floatingInput" type="text" name="name" placeholder="Your Name" autofocus="">
+      <label for="floatingInput">Name</label>
+    </div>
+    <div class="form-floating">
+      <input class="form-control" id="floatingPassword" type="password" name="password" placeholder="Your Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <button class="button is-block is-info is-large is-fullwidth" type="submit">Sign up</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+  </form>
+</main>
+{% endblock %}
