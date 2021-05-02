@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
-from .models import User
+from .models import User, inventory
 from . import db
 
 auth = Blueprint('auth', __name__)
@@ -58,3 +58,21 @@ def signup_post():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+@auth.route('/inventorypage')
+def inventorypage():
+    items = inventory.query.all()
+    return render_template('inventory.html', items = items)
+
+@auth.route('/inventorycreate')
+def inventorycreatepage():
+    return render_template('createinventory.html')
+
+@auth.route('/inventorycreate', methods=["POST"])
+def inventorycreate():
+    item = request.form.get('name')
+    qty = request.form.get('qty')
+    inventoryitem = inventory(name=item, qty=qty)
+    db.session.add(inventoryitem)
+    db.session.commit()
+    return redirect(url_for('auth.inventorypage'))

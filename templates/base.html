@@ -20,7 +20,13 @@
       <li class="nav-item"><a href="{{ url_for('main.profile') }}" class="nav-link">
           Profile
       </a></li>
+      <li class="nav-item"><a href="{{ url_for('auth.inventorycreatepage') }}" class="nav-link">
+          Create Inventory
+      </a></li>
       {% endif %}
+      <li class="nav-item"><a href="{{ url_for('auth.inventorypage') }}" class="nav-link">
+          Inventory
+      </a></li>
       {% if not current_user.is_authenticated %}
       <li class="nav-item"><a href="{{ url_for('auth.login') }}" class="nav-link">
           Login

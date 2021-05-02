@@ -10,6 +10,7 @@
   {% endif %}
   {% endwith %}
   <form action="/signup" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
 
     <div class="form-floating">
