@@ -65,10 +65,12 @@ def inventorypage():
     return render_template('inventory.html', items = items)
 
 @auth.route('/inventorycreate')
+@login_required
 def inventorycreatepage():
     return render_template('createinventory.html')
 
 @auth.route('/inventorycreate', methods=["POST"])
+@login_required
 def inventorycreate():
     item = request.form.get('name')
     qty = request.form.get('qty')
