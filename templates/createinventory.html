@@ -11,14 +11,14 @@
   {% endwith %}
   <form action="/inventorycreate" method="POST">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-    <h1 class="h3 mb-3 fw-normal">Inventory Create</h1>
+    <h1 class="h3 mb-3 fw-normal">Item Creation Menu</h1>
     <div class="form-floating">
       <input class="form-control" id="floatingInput" type="text" name="name" placeholder="Name" autofocus="">
       <label for="floatingInput">Name</label>
     </div>
     <div class="form-floating">
-      <input class="form-control" id="floatingInput" type="text" name="qty" placeholder="Quantity">
-      <label for="floatingPassword">Quantity</label>
+      <input class="form-control" id="floatingInput" type="text" name="price" placeholder="Price">
+      <label for="floatingPassword">Price</label>
     </div>
 
     <button class="button is-block is-info is-large is-fullwidth" type="submit">Submit</button>

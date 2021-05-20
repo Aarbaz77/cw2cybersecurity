@@ -10,4 +10,5 @@ class User(UserMixin, db.Model):
 class inventory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
-    qty = db.Column(db.Integer)
+    price = db.Column(db.Integer)
+    seller_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False)
