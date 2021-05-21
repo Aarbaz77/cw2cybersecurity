@@ -13,34 +13,31 @@
   <div class="container">
     <header class="d-flex justify-content-center py-3">
     <ul class="nav nav-pills">
-      <li class="nav-item"><a href="{{ url_for('main.index') }}" class="nav-link">
+      <li class="nav-item"><a href="{{ url_for('views.index') }}" class="nav-link">
           Home
       </a></li>
       {% if current_user.is_authenticated %}
-      <li class="nav-item"><a href="{{ url_for('main.profile') }}" class="nav-link">
+      <li class="nav-item"><a href="{{ url_for('views.profile') }}" class="nav-link">
           Profile
       </a></li>
-      <li class="nav-item"><a href="{{ url_for('auth.inventorycreatepage') }}" class="nav-link">
+      <li class="nav-item"><a href="{{ url_for('views.inventorycreatepage') }}" class="nav-link">
           Create Inventory
       </a></li>
-      <li class="nav-item"><a href="{{ url_for('auth.selfitems') }}" class="nav-link">
-          My Items
-      </a></li>
       {% endif %}
-      <li class="nav-item"><a href="{{ url_for('auth.inventorypage') }}" class="nav-link">
+      <li class="nav-item"><a href="{{ url_for('views.inventorypage') }}" class="nav-link">
           Inventory
       </a></li>
       {% if not current_user.is_authenticated %}
-      <li class="nav-item"><a href="{{ url_for('auth.login') }}" class="nav-link">
+      <li class="nav-item"><a href="{{ url_for('views.login') }}" class="nav-link">
           Login
       </a></li>
-      <li class="nav-item"><a href="{{ url_for('auth.signup') }}" class="nav-link">
+      <li class="nav-item"><a href="{{ url_for('views.signup') }}" class="nav-link">
           Sign Up
       </a></li>
 
       {% endif %}
       {% if current_user.is_authenticated %}
-      <li class="nav-item"><a href="{{ url_for('auth.logout') }}" class="nav-link">
+      <li class="nav-item"><a href="{{ url_for('views.logout') }}" class="nav-link">
           Logout
       </a></li>
       {% endif %}
