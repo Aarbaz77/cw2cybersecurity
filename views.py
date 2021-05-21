@@ -3,9 +3,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 from .models import User, inventory
 from . import db
+import re
 
 views = Blueprint('views', __name__)
 
+def removescripts(words):
+  cleantextcompile = re.compile('<.*?>')
+  cleantext = re.sub(cleantextcompile, '', words)
+  return cleantext
+  
 @views.route('/')
 def index():
     return render_template('index.html')
@@ -86,6 +92,7 @@ def inventorycreatepage():
 def inventorycreate():
     item = request.form.get('name')
     price = request.form.get('price')
+    item = removescripts(item)
     user = current_user
     inventoryitem = inventory(name=item, price=price, seller_id=user.id)
     db.session.add(inventoryitem)
@@ -99,7 +106,9 @@ def updateitems(nid):
     item_update = inventory.query.get_or_404(nid)
     item_name = item_update.name
     if request.method == "POST":
-        item_update.name = request.form['name']
+        newname = request.form['name']
+        newname = removescripts(newname)
+        item_update.name = newname
         item_update.price = request.form['price']
         if (item_update.seller_id==current_user.id):
             db.session.commit()
